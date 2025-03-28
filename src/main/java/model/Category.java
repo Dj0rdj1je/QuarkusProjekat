@@ -1,13 +1,20 @@
 package model;
 
+import jakarta.persistence.*;
+
+@Entity
+
 public class Category {
 
+	@Id
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "predmet_seq")
 	private int categoryId;
+	@Column(nullable = false)
 	private String name;
 	
-	public Category(String name) {
+	public Category() {
 		super();
-		this.categoryId = categoryId;
+
 		this.name = name;
 	}
 	
