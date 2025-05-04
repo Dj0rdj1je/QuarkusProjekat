@@ -1,43 +1,63 @@
 package model;
 
-import java.util.List;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.ManyToOne;
 
+
+@Entity
 public class Review {
+	@Id
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "review_seq")
+	private Long id;
+	@Column(nullable = false)
+	private String review;
+	@ManyToOne
+	private AppUser user;
+	@ManyToOne
+	private Product product;
+	
+	public Review() {
+		super();
+	}
 
-	private int reviewId;
-	private String reviewText;
-	private List<User> userId;
-	private List<Item> itemId;
-	
-	public String getReviewText() {
-		return reviewText;
+	public Review(String review, AppUser user, Product product) {
+		super();
+		this.review = review;
+		this.user = user;
+		this.product = product;
 	}
 	
-	public void setReviewText(String reviewText) {
-		this.reviewText = reviewText;
+	public Long getId() {
+		return id;
 	}
-	public int getReviewId() {
-		return reviewId;
+	public void setId(Long id) {
+		this.id = id;
 	}
-	public void setReviewId(int reviewId) {
-		this.reviewId = reviewId;
+	public String getReview() {
+		return review;
 	}
-	public List<User> getUserId() {
-		return userId;
+	public void setReview(String review) {
+		this.review = review;
 	}
-	public void setUserId(List<User> userId) {
-		this.userId = userId;
+	public AppUser getUser() {
+		return user;
 	}
-	public List<Item> getItemId() {
-		return itemId;
+	public void setUser(AppUser user) {
+		this.user = user;
 	}
-	public void setItemId(List<Item> itemId) {
-		this.itemId = itemId;
+	public Product getProduct() {
+		return product;
 	}
+	public void setProduct(Product product) {
+		this.product = product;
+	}
+
 	@Override
 	public String toString() {
-		return "Review [reviewId=" + reviewId + ", reviewText=" + reviewText + ", userId=" + userId + ", itemId="
-				+ itemId + "]";
+		return "Review [id=" + id + ", review=" + review + ", user=" + user + ", product=" + product + "]";
 	}
-	
 }

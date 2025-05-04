@@ -1,43 +1,42 @@
 package model;
 
-import java.util.List;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 
 
+@Entity
 public class Cart {
+
+	@Id
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "cart_seq")
+	private Long id;
+	@Column
+	private double sum;
 	
-	private int cartId;
-	private int quantity;
-	private List<User> userId;
-	private List<Item> itemId;
-	
-	public int getCartId() {
-		return cartId;
-	}
-	public void setCartId(int cartId) {
-		this.cartId = cartId;
-	}
-	public List<User> getUserId() {
-		return userId;
-	}
-	public void setUserId(List<User> userId) {
-		this.userId = userId;
-	}
-	public List<Item> getItemId() {
-		return itemId;
-	}
-	public void setItemId(List<Item> itemId) {
-		this.itemId = itemId;
-	}
-	public int getQuantity() {
-		return quantity;
-	}
-	public void setQuantity(int quantity) {
-		this.quantity = quantity;
+	public Cart() {
+		super();
 	}
 	
-	@Override
-	public String toString() {
-		return "Cart [cartId=" + cartId + ", userId=" + userId + ", itemId=" + itemId + ", quantity=" + quantity + "]";
+	public Cart(double sum) {
+		super();
+		this.sum = sum;
 	}
+
+	public Long getId() {
+		return id;
+	}
+	
+	public void setId(Long id) {
+		this.id = id;
+	}
+	public double getSum() {
+		return sum;
+	}
+	public void setSum(double sum) {
+		this.sum = sum;
+	} 
 	
 }
