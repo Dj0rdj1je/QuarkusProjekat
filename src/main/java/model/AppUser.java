@@ -6,8 +6,14 @@ import jakarta.persistence.*;
 
 @Entity
 @Table(name = "app_user")
+@NamedQueries({
+	@NamedQuery(name = AppUser.GET_ALL_USERS, query = "Select u from AppUser u"),
+	
+})
 public class AppUser {
 
+	public static final String GET_ALL_USERS = "AppUser.getAllUsers";
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "user_seq")
 	private Long id;

@@ -6,10 +6,15 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.NamedQuery;
 
 
 @Entity
+@NamedQuery(name = Review.GET_REVIEWS_FOR_USER, query = "Select r from Review r where r.user.id = :id")
 public class Review {
+	
+	public static final String GET_REVIEWS_FOR_USER = "Review.getReviewsForUser";
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "review_seq")
 	private Long id;
